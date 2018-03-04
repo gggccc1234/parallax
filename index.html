@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jQuery和CSS3超酷3D多层图片视觉差互动特效 | jQuery特效|手机微信网站特效| 网页特效库</title>
+	<meta name="keywords" content="SVG特效, 手机微信网站特效, css3动画, html5特效, 网页特效" />
+	<meta name="description" content="网页特效库-专注于HTML5、CSS3、js、jQuery、手机移动端等网页特效的手机与分享。特效库始终坚持：无会员、无积分、无限制的“三无原则”，所有的资源都免费提供广大童鞋下载学习和使用。" />
+	
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	
+	<style type="text/css">
+		html{
+			background: #6bc85e;
+			color: #fff;
+			font-family: "microsoft yahei";
+		}
+		.container {
+		  width: 50%;
+		  margin: 40px auto;
+		}
+		.moving-zone {
+		    position: relative;
+		    width:85%; height:985%;
+		    margin: auto;
+		    perspective: 800px;
+		}
+		.popup {
+		    padding: 10px;
+		    box-sizing: border-box;
+		    cursor: pointer;
+		    transform-style: preserve-3d;
+		}
+		.popup-2 {
+		    position: absolute;
+		    padding: 10px;
+		    box-sizing: border-box;
+		    cursor: pointer;
+		    transform-style: preserve-3d;
+			left:20%; top:0% !important;
+			transform: translateZ(100px) !important;
+		}
+		.popup-2 img {
+			  overflow: hidden;
+		}
+	</style>
+	
+</head>
+<body>
+		<div class="container">
+			<div class="moving-zone">
+                <div class="popup">
+                  <img class="margin" src="img/fallback_sky2_bw6qd2.jpg" width="100%">
+                  <div class="moving-zone-2">
+                    	<div class="popup-2">
+                		      <img src="img/drone_y1dihg.png" width="120%">
+                    	</div>
+                  </div>
+                </div>
+           </div>
+      </div>
+	
+	<script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var moveForce = 30;
+		var rotateForce = 20;
+
+		$(document).mousemove(function(e) {
+		    var docX = $(document).width();
+		    var docY = $(document).height(); 
+		    
+		    var moveX = (e.pageX - docX/2) / (docX/2) * -moveForce;
+		    var moveY = (e.pageY - docY/2) / (docY/2) * -moveForce;
+		    
+		    var rotateY = (e.pageX / docX * rotateForce*2) - rotateForce;
+		    var rotateX = -((e.pageY / docY * rotateForce*2) - rotateForce);
+		    
+		    $('.popup')
+		        .css('left', moveX+'px')
+		        .css('top', moveY+'px')
+		        .css('transform', 'rotateX('+rotateX+'deg) rotateY('+rotateY+'deg)');
+
+		    $('.popup-2')
+		        .css('right', moveX+'px')
+		        .css('bottom', moveY+'px')
+		        .css('transform', 'rotateX('-rotateX-'deg) rotateY('-rotateY-'deg)');
+		});
+	</script>
+</body>
+</html>
